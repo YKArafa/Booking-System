@@ -10,6 +10,6 @@ The motivation behind this project is to address the need for a streamlined tick
 ## Features
 
 - **User Login System**: Secure login for users to access the system.
-- **Room Availability**: Real-time updates on room availability.
+- **ticket Availability**: Real-time updates on ticket availability.
 - **Booking Management**: Users can book, cancel, and manage their bookings.
 - **Admin Dashboard**: Administrative interface for managing bookings and user accounts.
