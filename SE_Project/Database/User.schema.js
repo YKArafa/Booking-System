@@ -19,7 +19,7 @@ const userschema = new mongoose.Schema({
     type: String,
     required: true
   },
-  role: {
+  role: {  // going to add in front end the option to choose which role (in form of buttons), so no enum needed and they are fixed options
     type: String,
     required: true
   },
