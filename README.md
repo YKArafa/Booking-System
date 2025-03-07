@@ -1,15 +1,32 @@
-# Booking-System
-## Introduction
+# 🎟 Tickety - Online Event Ticketing System  
 
-The Booking System is a website designed to simplify the process of booking tickets and creating events. This project aims to enhance the efficiency of room management for events, booking, and management of such events.
+## 📜 Project Overview  
+Tickety is an online event ticketing system that allows users to browse, search, and purchase tickets for various events such as concerts, sports games, theater shows, and more.  
 
-## Motivation
+---
 
-The motivation behind this project is to address the need for a streamlined ticket booking process. By providing a centralized platform, users can easily view available tickets, book tickets, and manage their bookings, reducing administrative burdens and improving resource utilization.
+## 📌 Features  
+- ✅ Homepage – Displays upcoming events with details  
+- ✅ Event Details Page – Provides information and booking options  
+- ✅ Ticket Booking System – Users can book and purchase tickets  
+- ✅ Search & Filter – Find events by name, category, date, or location  
+- ✅ User Dashboard – View booking history and tickets  
+- ✅ Admin Panel – Manage events and users  
+- ✅ Database Integration – Uses MongoDB for storing data  
 
-## Features
+---
 
-- **User Login System**: Secure login for users to access the system.
-- **ticket Availability**: Real-time updates on ticket availability.
-- **Booking Management**: Users can book, cancel, and manage their bookings.
-- **Admin Dashboard**: Administrative interface for managing bookings and user accounts.
+## 👥 User Roles  
+⿡ Standard User – Can browse and book tickets  
+⿢ Event Organizer – Can create, update, and delete events  
+⿣ Admin – Manages users, events, and the system  
+
+---
+
+## 🛠 Tech Stack  
+- Frontend: React.js / Next.js (Optional)  
+- Backend: Node.js, Express.js  
+- Database: MongoDB + Mongoose  
+- Version Control: Git & GitHub  
+
+---
