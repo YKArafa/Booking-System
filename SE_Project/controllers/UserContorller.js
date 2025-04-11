@@ -19,7 +19,7 @@ exports.register = async (req, res) => {
     const token = jwt.sign({ sub: user.ObjectId, role: user.role }, process.env.JWT_SECRET);
     res.status(201).json({ token });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: 'Could not register User' });
   }
 };
 
@@ -43,6 +43,9 @@ exports.updateProfile = async (req, res) => {
 exports.getProfile = async (req, res) => {
     try {
       const user = await User.findById(req.user.sub);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
       res.json(user);
     } catch (error) {
       res.status(400).json({ error: error.message });
