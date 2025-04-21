@@ -10,9 +10,11 @@ mongoose.connect("mongodb://localhost:27017/EventDB", { useNewUrlParser: true, u
 // Middleware
 app.use(express.json());
 
+const userroute = require('./routes/user_routes');
 const eventRoute = require('./routes/eventRoute');
 const bookingRoute = require('./routes/bookingRoute');
 
+app.use('/api/v1/users/', userroute);
 app.use('/api/v1/events/', eventRoute);
 app.use('/api/bookings', bookingRoute);
 
