@@ -19,8 +19,8 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
-    }
-    ,category: {
+    },
+    category: {
         type: String,
         required: true,
         trim: true
@@ -39,19 +39,27 @@ const eventSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
-     remainingTickets: {
+    remainingTickets: {
         type: Number,
         required: true,
     },
-     organizer: {
+    organizer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-     timestamp: {
+    timestamp: {
         type: Date,
         required: true,
         default: Date.now
+    },
+    status: {
+        type: String,
+        required: true,
+        trim: true,
+        enum: ['pending', 'approved', 'declined'],
+        default: 'pending'
     }
 });
-module.exports = mongoose.model('Event', eventSchema);
+
+module.exports = mongoose.model('Event', eventSchema, 'event');
