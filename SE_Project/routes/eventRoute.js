@@ -8,13 +8,13 @@ const checkRole = require('../middleware/checkRole');
 
 
 
-router.put('/:id/status', authenticate, checkRole('admin'), updateEventStatus);
-router.post('/createEvent', authenticate, checkRole('organizer') ,createEvent)
-router.get('/', authenticate, checkRole('organizer'), getAllEvents);
-router.get('/:id', authenticate, checkRole('organizer'), getEventById);
-router.delete('/:id',authenticate, checkRole('organizer'),deleteEvent);
-//router.get('/users/event/', checkRole('organizer'), getEventsByOrganizer);
-router.get('/analytics/organizer', authenticate, checkRole('organizer'), getOrganizerAnalytics);
+router.put('/api/v1/events/:id', authenticate, checkRole('admin'), updateEventStatus); //update event
+router.post('/api/v1/events', authenticate, checkRole('organizer') ,createEvent); //create event
+router.get('/api/v1/events', authenticate, checkRole('organizer'), getAllEvents); //get all events
+router.get('/api/v1/events/:id', authenticate, checkRole('organizer'), getEventById); // details of single event
+router.delete('/api/v1/events/:id',authenticate, checkRole('organizer'),deleteEvent); //delete event
+router.get('/api/v1/events/:id', checkRole('organizer'), getEventsByOrganizer); //get current user's events
+router.get('/api/v1/users/events/analytics', authenticate, checkRole('organizer'), getOrganizerAnalytics); //analytics
 
 
 module.exports = router;
