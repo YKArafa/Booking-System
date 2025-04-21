@@ -13,7 +13,7 @@ router.post('/api/v1/events', authenticate, checkRole('organizer') ,createEvent)
 router.get('/api/v1/events', authenticate, checkRole('organizer'), getAllEvents); //get all events
 router.get('/api/v1/events/:id', authenticate, checkRole('organizer'), getEventById); // details of single event
 router.delete('/api/v1/events/:id',authenticate, checkRole('organizer'),deleteEvent); //delete event
-router.get('/api/v1/events/:id', checkRole('organizer'), getEventsByOrganizer); //get current user's events
+router.get('/api/v1/users/events', checkRole('organizer'), getEventsByOrganizer); //get current user's events
 router.get('/api/v1/users/events/analytics', authenticate, checkRole('organizer'), getOrganizerAnalytics); //analytics
 
 
