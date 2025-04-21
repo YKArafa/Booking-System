@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 const userschema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true
   },
@@ -19,7 +19,7 @@ const userschema = new mongoose.Schema({
     type: String,
     required: true
   },
-  role: {  // going to add in front end the option to choose which role (in form of buttons), so no enum needed and they are fixed options
+  role: {
     type: String,
     required: true
   },
