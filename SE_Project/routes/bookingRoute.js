@@ -1,32 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const BookingController = require('../controllers/BookingController');
-const auth = require('../middlewares/authMiddleware');
+const bookingController = require('../controllers/BookingController');
+const auth = require('../middlewares/auth');
 
-router.use(auth.checkAuth);
-router.get('/', BookingController.getAllBookings);
-router.get('/:id', BookingController.getBooking);
+router.use(auth.verifyUser);
 
-router.post('/', 
-    auth.checkRole('user'), 
-    BookingController.createBooking
-);
-
-router.get('/my-bookings', 
-    auth.checkRole('user'),
-    BookingController.getUserBookings
-);
-
-router.delete('/:id', 
-    auth.checkRole('user'),
-    auth.checkBookingOwner,
-    BookingController.cancelBooking
-);
-
-// Admin routes
-router.get('/admin/all', 
-    auth.checkRole('admin'),
-    BookingController.getAllBookingsAdmin
-);
+router.post('/', bookingController.bookEvent);
+router.get('/my', bookingController.getMyBookings);
+router.put('/cancel/:id', bookingController.cancelBooking);
 
 module.exports = router;
