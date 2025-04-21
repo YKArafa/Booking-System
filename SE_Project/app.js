@@ -10,13 +10,15 @@ mongoose.connect("mongodb://localhost:27017/EventDB", { useNewUrlParser: true, u
 // Middleware
 app.use(express.json());
 
-// Import routes
 const eventRoute = require('./routes/eventRoute');
+const bookingRoute = require('./routes/bookingRoute');
 
-// Use routes
 app.use('/api/v1/events/', eventRoute);
+app.use('/api/bookings', bookingRoute);
 
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
+app.use('/api/bookings', bookingRoute);
