@@ -4,7 +4,7 @@ const { register, login, forgetpassword, getallusers } = require('../controllers
 const { hashPassword } = require('../middleware/user_middleware');
 const { authentication, requireRole } = require('../middleware/user_middleware');
 const { updateProfile } = require('../controllers/UserController');
-const { getProfile } = require('../controllers/UserController');
+const { getProfile, updateProfile, userinfo, deleteUser} = require('../controllers/UserController');
 
 router.post('/api/v1/register', hashPassword, register);
 router.post('/api/v1//login', authentication, login);
