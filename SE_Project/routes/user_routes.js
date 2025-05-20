@@ -4,7 +4,7 @@ const { register, login, forgetpassword, getallusers } = require('../controllers
 const { hashPassword } = require('../middleware/user_middleware');
 const { authentication, requireRole } = require('../middleware/user_middleware');
 const { updateProfile } = require('../controllers/UserController');
-const { getProfile } = require('../controllers/UserController');
+const { getProfile, updateProfile, userinfo, deleteUser, updateProfileadmin} = require('../controllers/UserController');
 
 router.post('/api/v1/register', hashPassword, register);
 router.post('/api/v1//login', authentication, login);
@@ -13,6 +13,6 @@ router.get('/api/v1/users ', authentication, requireRole(admin), getallusers);
 router.put('/api/v1/users/profile', authentication, updateProfile);
 router.get('/api/v1/users/profile', authentication, getProfile);
 router.get('/api/v1/users/:id', authentication, requireRole(admin), userinfo);
-router.put('/api/v1/users/:id', authentication, requireRole(admin), updateProfile);
+router.put('/api/v1/users/:id', authentication, requireRole(admin), updateProfileadmin);
 router.delete('/api/v1/users/:id', authentication, requireRole(admin), deleteUser);
 module.exports = router;

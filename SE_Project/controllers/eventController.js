@@ -173,4 +173,13 @@ const updateEventStatus = async (req, res) => {
     });
   }
 }
-module.exports = { getAllEvents, getEventById, createEvent, deleteEvent, getEventsByOrganizer, getOrganizerAnalytics, updateEventStatus };
+const getApprovedEvents = async (req, res) => {
+  try {
+    const approvedEvents = await Event.find({ status: 'approved' }).exec();
+    res.status(200).json(approvedEvents);
+  } catch (error) {
+    console.error('Error fetching approved events:', error);
+    res.status(500).json({ error: 'Failed to fetch approved events' });
+  }
+};
+module.exports = { getAllEvents, getEventById, createEvent, deleteEvent, getEventsByOrganizer, getOrganizerAnalytics, updateEventStatus, getApprovedEvents };

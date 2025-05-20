@@ -1,4 +1,3 @@
-
 // /api/v1/register       | POST  |Register a new user (Public)  ***
 // /api/v1/login          | POST  |Authenticate user and return token (Public) ***
 // /api/v1/forgetPassword | PUT   |Update user password (Public) 
@@ -51,6 +50,20 @@ exports.updateProfile = async (req, res) => {
       res.status(500).json({ error: 'Failed to update profile' });
     }
   };
+  exports.updateProfileadmin = async (req, res) => {
+    try {
+      const userId = req.params.id; 
+      const updates = req.body;  
+      const user = await User.findByIdAndUpdate(userId, updates, { new: true });
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to update profile' });
+    }
+  };
 exports.getProfile = async (req, res) => {
     try {
       const user = await User.findById(req.body.ObjectId);
@@ -80,7 +93,7 @@ exports.getallusers = async (req, res) => {
 
 exports.userinfo = async (req, res) => {
   try {
-    const usersinfo = await User.findOne(req.body.ObjectId);
+    const usersinfo = await User.findOne(req.params.id);
      res.status(200).json({
       username: usersinfo.username,
       email: usersinfo.email,
@@ -96,7 +109,7 @@ exports.userinfo = async (req, res) => {
 };
 exports.deleteUser = async (req, res) => {
   try {
-    const userId = req.body.ObjectId;
+    const userId = req.params.id;
     if (req.user.sub === userId) {
        res.status(400).json({ error: 'Admins cannot delete their own account' });
     }
@@ -120,5 +133,3 @@ exports.forgetPassword = async (req, res) => {
     res.json({ error: 'Could not update password' });
   }
 };
-
-

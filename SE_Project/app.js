@@ -18,6 +18,7 @@ app.use('/api/v1/users/', userroute);
 app.use('/api/v1/events/', eventRoute);
 app.use('/api/v1/bookings', bookingroute);
 
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
