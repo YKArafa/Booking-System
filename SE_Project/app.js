@@ -16,7 +16,7 @@ const bookingroute = require('./routes/booking_routes');
 
 app.use('/api/v1/users/', userroute);
 app.use('/api/v1/events/', eventRoute);
-app.use('/api/bookings', bookingroute);
+app.use('/api/v1/bookings', bookingroute);
 
 // Start server
 app.listen(PORT, () => {
