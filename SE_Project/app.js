@@ -12,10 +12,11 @@ app.use(express.json());
 
 const userroute = require('./routes/user_routes');
 const eventRoute = require('./routes/eventRoute');
-
+const bookingroute = require('./routes/booking_routes');
 
 app.use('/api/v1/users/', userroute);
 app.use('/api/v1/events/', eventRoute);
+app.use('/api/v1/bookings', bookingroute);
 
 
 // Start server
