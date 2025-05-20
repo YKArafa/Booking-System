@@ -12,11 +12,11 @@ app.use(express.json());
 
 const userroute = require('./routes/user_routes');
 const eventRoute = require('./routes/eventRoute');
-const bookingRoute = require('./routes/bookingRoute');
+
 
 app.use('/api/v1/users/', userroute);
 app.use('/api/v1/events/', eventRoute);
-app.use('/api/bookings', bookingRoute);
+
 
 // Start server
 app.listen(PORT, () => {
