@@ -1,0 +1,149 @@
+/* ===== BookTicketForm ===== */
+.book-ticket-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.ticket-availability {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.price-summary {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  text-align: right;
+}
+
+.book-ticket-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.book-ticket-form button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+/* ===== BookingCard ===== */
+.booking-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.booking-header h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.booking-header a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.booking-header a:hover {
+  text-decoration: underline;
+}
+
+.status {
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.confirmed {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.status.canceled {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+.booking-details p {
+  margin: 0.3rem 0;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.cancel-btn:hover {
+  background-color: #bb2d3b;
+}
+
+/* ===== UserBookingsPage ===== */
+.user-bookings {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.user-bookings h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.no-bookings {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+}
+
+.bookings-list {
+  display: flex;
+  flex-direction: column;
+}
