@@ -3,7 +3,7 @@ const Event = require('../models/Event');
 
 exports.getUserBookings = async (req, res) => {
   try {
-    const bookings = await Booking.find({ user: req.user.sub, status: { $ne: 'canceled' } })
+    const bookings = await Booking.find({ user: req.user.userId, status: { $ne: 'canceled' } })
     res.status(200).json(bookings);
   } catch (error) {
     console.error(error);
@@ -19,7 +19,7 @@ exports.createBooking = async (req, res) => {
       return res.status(400).json({ error: 'Event ID and valid number of tickets are required' });
     }
 
-    const event = await Event.findById(eventId);
+    const event = await Event.findOne({ ObjectId: eventId });
     if (!event) return res.status(404).json({ error: 'Event not found' });
 
     if (event.remainingTickets < numberOfTickets) {
@@ -31,10 +31,10 @@ exports.createBooking = async (req, res) => {
 
     try {
       const booking = await Booking.create([{
-        user: req.user.sub,
+        user: req.user.userId,
         event: eventId,
         numberOfTickets,
-        totalPrice,
+        totalPrice: total,
         status: 'confirmed'
       }], { session });
 
