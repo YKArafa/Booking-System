@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './booking.css';
 
 const BookingCard = ({ booking, onCancel }) => {
     return (
