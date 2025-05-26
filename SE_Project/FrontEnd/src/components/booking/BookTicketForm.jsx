@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import Loader from '../shared/Loader'; // Assuming you have a loader component
 import './BookTicketForm.css';
 import { createBooking } from '../../../services/bookingServices'; 
+import './booking.css';
+
 function BookTicketForm({ event, onBookingSuccess }) {
   const { user } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
