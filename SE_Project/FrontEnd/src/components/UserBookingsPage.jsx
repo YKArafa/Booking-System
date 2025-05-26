@@ -4,7 +4,7 @@ import AuthContext from '../../context/AuthContext';
 import BookingCard from '../../components/booking/BookingCard';
 import { toast } from 'react-toastify';
 import Loader from '../../components/shared/Loader';
-
+import '../booking/booking.css';
 const UserBookingsPage = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
