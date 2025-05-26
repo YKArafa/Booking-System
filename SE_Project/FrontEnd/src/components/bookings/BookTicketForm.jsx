@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext';
 
 const BookTicketForm = ({ eventId, price, availableTickets, onBookingComplete }) => {
+  const { user } = useContext(AuthContext);
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -18,6 +20,10 @@ const BookTicketForm = ({ eventId, price, availableTickets, onBookingComplete })
       await axios.post('/api/bookings', {
         eventId,
         quantity,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
       });
       
       if (onBookingComplete) {

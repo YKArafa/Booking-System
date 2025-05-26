@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import axios from 'axios';
 import BookTicketForm from '../bookings/BookTicketForm';
-import { useAuth } from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const EventDetails = () => {
   const { id } = useParams();
-  const { isAuthenticated } = useAuth();
+  const { user } = useContext(AuthContext);
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -107,7 +107,7 @@ const EventDetails = () => {
             </div>
 
             <div>
-              {isAuthenticated ? (
+              {user?.token ? (
                 <div className="bg-gray-50 rounded-lg p-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-4">Book Tickets</h2>
                   <BookTicketForm 

@@ -20,8 +20,15 @@ const Navigation = () => {
         
         <div className="flex items-center gap-6">
           {!user?.token ? (
-            // Public navigation - empty for default home
-            <></>
+            // Public navigation
+            <div className="flex items-center gap-4">
+              <Link to="/login" className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+                Login
+              </Link>
+              <Link to="/register" className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+                Register
+              </Link>
+            </div>
           ) : (
             // Authenticated navigation
             <>
@@ -30,8 +37,8 @@ const Navigation = () => {
               </Link>
               
               {/* Standard user links */}
-              {user.role === 'standard' && (
-                <Link to="/my-bookings" className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+              {(user.role === 'standard' || user.role === 'admin') && (
+                <Link to="/bookings" className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
                   My Bookings
                 </Link>
               )}
