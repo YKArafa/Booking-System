@@ -7,12 +7,12 @@ const { updateProfile } = require('../controllers/UserController');
 const { getProfile, updateProfile, userinfo, deleteUser, updateProfileadmin} = require('../controllers/UserController');
 
 router.post('/api/v1/register', hashPassword, register);
-router.post('/api/v1//login', authentication, login);
+router.post('/api/v1/login', login);
 router.put('/api/v1/users/forgetPassword', forgetpassword);
-router.get('/api/v1/users ', authentication, requireRole(admin), getallusers);
+router.get('/api/v1/users', authentication, requireRole('admin'), getallusers);
 router.put('/api/v1/users/profile', authentication, updateProfile);
 router.get('/api/v1/users/profile', authentication, getProfile);
-router.get('/api/v1/users/:id', authentication, requireRole(admin), userinfo);
-router.put('/api/v1/users/:id', authentication, requireRole(admin), updateProfileadmin);
-router.delete('/api/v1/users/:id', authentication, requireRole(admin), deleteUser);
+router.get('/api/v1/users/:id', authentication, requireRole('admin'), userinfo);
+router.put('/api/v1/users/:id', authentication, requireRole('admin'), updateProfileadmin);
+router.delete('/api/v1/users/:id', authentication, requireRole('admin'), deleteUser);
 module.exports = router;
