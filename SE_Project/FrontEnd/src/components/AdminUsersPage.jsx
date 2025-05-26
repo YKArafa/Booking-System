@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import UserRow from './UserRow';
+import UpdateUserRoleModal from './admin/UpdateUserRoleModal';
+import ConfirmationDialog from './admin/ConfirmationDialog';
 import axios from 'axios';
 
 const AdminUsersPage = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   useEffect(() => {
     fetchUsers();
@@ -22,24 +27,26 @@ const AdminUsersPage = () => {
     }
   };
 
-  const handleUpdateRole = async (user) => {
-    try {
-      // You can implement role update logic here
-      // For example: showing a modal with role options
-      console.log('Update role for user:', user);
-    } catch (err) {
-      setError('Failed to update user role');
-    }
+  const handleUpdateRole = (user) => {
+    setSelectedUser(user);
+    setIsUpdateModalOpen(true);
   };
 
-  const handleDelete = async (user) => {
-    if (!window.confirm(`Are you sure you want to delete ${user.name}?`)) {
-      return;
-    }
+  const handleDelete = (user) => {
+    setSelectedUser(user);
+    setIsDeleteDialogOpen(true);
+  };
 
+  const handleUpdateSuccess = () => {
+    setIsUpdateModalOpen(false);
+    fetchUsers();
+  };
+
+  const handleDeleteConfirm = async () => {
     try {
-      await axios.delete(`/api/users/${user.id}`);
-      setUsers(users.filter((u) => u.id !== user.id));
+      await axios.delete(`/api/users/${selectedUser.id}`);
+      setUsers(users.filter((u) => u.id !== selectedUser.id));
+      setIsDeleteDialogOpen(false);
     } catch (err) {
       setError('Failed to delete user');
     }
@@ -108,6 +115,24 @@ const AdminUsersPage = () => {
           </div>
         </div>
       </div>
+
+      {selectedUser && (
+        <>
+          <UpdateUserRoleModal
+            user={selectedUser}
+            isOpen={isUpdateModalOpen}
+            onClose={() => setIsUpdateModalOpen(false)}
+            onSuccess={handleUpdateSuccess}
+          />
+          <ConfirmationDialog
+            isOpen={isDeleteDialogOpen}
+            title="Delete User"
+            message={`Are you sure you want to delete ${selectedUser.name}?`}
+            onConfirm={handleDeleteConfirm}
+            onClose={() => setIsDeleteDialogOpen(false)}
+          />
+        </>
+      )}
     </div>
   );
 };
