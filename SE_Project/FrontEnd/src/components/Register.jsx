@@ -11,6 +11,7 @@ const Register = () => {
     confirmPassword: '',
     role: 'standard'
   });
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,17 +19,51 @@ const Register = () => {
       ...prevState,
       [name]: value
     }));
+    // Clear error when user starts typing
+    if (error) setError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    navigate('/login');
+
+    // Validate passwords match
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/v1/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          role: formData.role
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        setError(data.error);
+        return;
+      }
+
+      // Registration successful - redirect to login
+      navigate('/login');
+    } catch (err) {
+      setError('An error occurred while trying to register');
+    }
   };
 
   return (
     <div className="form-container">
       <h2>Register</h2>
+      {error && <div className="error-message">{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username:</label>
