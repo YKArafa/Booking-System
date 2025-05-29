@@ -13,7 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LoadingSpinner from './components/common/LoadingSpinner';
 
 // Import role-specific components
-import MyBookings from './components/MyBookings';
+import MyBookings from './components/booking/BookingCard';
 import CreateEvent from './components/CreateEvent';
 import MyEvents from './components/MyEvents';
 import ManageUsers from './components/admin/ManageUsers';
